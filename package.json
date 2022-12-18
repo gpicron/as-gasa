@@ -1,23 +1,26 @@
 {
   "name": "as-gasa",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "description": "as-gasa is a set of core AssemblyScript librairies inspired by the equivalent in Java world Guava",
   "scripts": {
-    "clean": "rm -rf build",
+    "clean": "npx rimraf build doc",
     "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
     "docs": "typedoc",
     "asbuild:debug": "asc assembly/index.ts --target debug",
     "asbuild:release": "asc assembly/index.ts --target release",
     "asbuild": "npm run asbuild:debug && npm run asbuild:release",
     "tsbuild": "tsc",
+    "build" : "npm run clean && npm run asbuild && npm run tsbuild",
     "tstest": "NODE_OPTIONS=\"--experimental-vm-modules --experimental-wasm-modules\" npx jest",
     "astest": "asp --verbose",
     "astest:ci": "asp --summary",
-    "commit": "cz"
+    "test": "npm run astest:ci && npm run tstest",
+    "commit": "cz",
+    "semantic-release": "semantic-release"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gpicron/as-gasa.git"
+    "url": "https://github.com/gpicron/as-gasa.git"
   },
   "keywords": [
     "assemblyscript"
@@ -38,6 +41,9 @@
     "commitizen": "^4.2.6",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.30.0",
+    "rimraf": "^3.0.2",
+    "semantic-release": "^19.0.5",
+    "semantic-release-npm-github-publish": "^1.5.4",
     "ts-jest": "^29.0.3",
     "ts-node": "^10.9.1",
     "typedoc": "^0.23.23",
@@ -55,5 +61,8 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "release": {
+    "branches": ["main", "next"]
   }
 }
