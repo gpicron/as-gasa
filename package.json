@@ -1,0 +1,59 @@
+{
+  "name": "as-gasa",
+  "version": "1.0.0",
+  "description": "as-gasa is a set of core AssemblyScript librairies inspired by the equivalent in Java world Guava",
+  "scripts": {
+    "clean": "rm -rf build",
+    "lint": "eslint src/ --ext .js,.jsx,.ts,.tsx",
+    "docs": "typedoc",
+    "asbuild:debug": "asc assembly/index.ts --target debug",
+    "asbuild:release": "asc assembly/index.ts --target release",
+    "asbuild": "npm run asbuild:debug && npm run asbuild:release",
+    "tsbuild": "tsc",
+    "tstest": "NODE_OPTIONS=\"--experimental-vm-modules --experimental-wasm-modules\" npx jest",
+    "astest": "asp --verbose",
+    "astest:ci": "asp --summary",
+    "commit": "cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gpicron/as-gasa.git"
+  },
+  "keywords": [
+    "assemblyscript"
+  ],
+  "author": "Geoffrey Picron",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/gpicron/as-gasa/issues"
+  },
+  "homepage": "https://github.com/gpicron/as-gasa#readme",
+  "devDependencies": {
+    "@as-pect/cli": "^8.0.1",
+    "@types/jest": "^29.0.3",
+    "@types/node": "^18.11.17",
+    "@typescript-eslint/eslint-plugin": "^5.46.1",
+    "@typescript-eslint/parser": "^5.46.1",
+    "assemblyscript": "^0.25.1",
+    "commitizen": "^4.2.6",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.30.0",
+    "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.1",
+    "typedoc": "^0.23.23",
+    "typescript": "^4.9.4"
+  },
+  "type": "module",
+  "main": "./build/index.js",
+  "exports": {
+    ".": {
+      "import": "./build/index.js",
+      "types": "./build/index.d.ts"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
